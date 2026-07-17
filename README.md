@@ -10,6 +10,10 @@
 
 </p>
 
+# Quick Demo
+
+Check the page at https://corecoderx.github.io/love-proposal-birthday-wish/
+
 # Interactive Birthday Letter
 
 An interactive birthday website that gradually unfolds into a personal story.
