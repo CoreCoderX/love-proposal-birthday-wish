@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 20th Birthday ✨ | 13 Years, One Heart</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Patrick+Hand&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <!-- Iconify for icons -->
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'paper': '#fdfbf7',
+                        'pencil': '#2d2d2d',
+                        'erased': '#e5e0d8',
+                        'marker-red': '#ff4d4d',
+                        'pen-blue': '#2d5da1',
+                        'postit': '#fff9c4'
+                    },
+                    fontFamily: {
+                        'heading': ['Kalam', 'cursive'],
+                        'body': ['Patrick Hand', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-paper font-body text-pencil overflow-x-hidden">
+    
+    <!-- Background Texture -->
+    <div class="paper-texture"></div>
+    
+    <!-- Floating Balloons (Desktop Only) -->
+    <div class="balloons-container hidden md:block">
+        <div class="balloon balloon-1" data-number="2"></div>
+        <div class="balloon balloon-2" data-number="0"></div>
+        <div class="balloon balloon-3" data-number="♥"></div>
+        <div class="balloon balloon-4" data-number="13"></div>
+    </div>
+
+    <!-- Sound Toggle Button -->
+    <button id="soundToggle" class="sound-toggle fixed top-6 right-6 z-50 bg-white border-3 border-pencil rounded-full hover:bg-postit transition-all" style="width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; border: 3px solid #2d2d2d; box-shadow: 3px 3px 0px 0px rgba(45, 45, 45, 0.1);">
+        <span id="soundIcon" style="font-size: 28px; line-height: 1; display: block;">🔊</span>
+    </button>
+
+    <!-- Main Container -->
+    <div class="relative z-10">
+        
+        <!-- ============================================
+             PHASE 1: BIRTHDAY CELEBRATION 
+             ============================================ -->
+        
+        <section id="birthdaySection" class="birthday-celebration-section min-h-screen flex items-center justify-center px-4 py-12 relative overflow-hidden">
+            <div class="max-w-6xl mx-auto w-full">
+                
+                <!-- Birthday Hero -->
+                <div class="text-center mb-8 md:mb-16">
+                    
+                    <!-- Confetti Canvas -->
+                    <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
+                    
+                    <!-- Main Birthday Greeting -->
+                    <div class="birthday-hero mb-8 md:mb-12">
+                        <div class="inline-block relative">
+                            <h1 class="font-heading text-4xl sm:text-5xl md:text-7xl lg:text-8xl mb-4 birthday-title">
+                                Happy 20<sup class="text-3xl md:text-5xl">th</sup> Birthday
+                                <span class="inline-block text-marker-red animate-wiggle">!</span>
+                            </h1>
+                            <svg class="wavy-line" viewBox="0 0 400 10" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0,5 Q20,0 40,5 T80,5 T120,5 T160,5 T200,5 T240,5 T280,5 T320,5 T360,5 T400,5" 
+                                      stroke="#ff4d4d" 
+                                      stroke-width="3" 
+                                      fill="none"
+                                      stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <p class="text-xl sm:text-2xl md:text-4xl font-heading mt-6 md:mt-8 text-pencil/80">
+                            [Girl_Name]
+                        </p>
+                    </div>
+
+                    <!-- Birthday Cake (Single Click) -->
+                    <div class="birthday-cake-container mb-8 md:mb-12">
+                        <div class="wobbly-card bg-white border-4 border-pencil p-3 md:p-10 w-full max-w-md mx-auto">
+                            <p class="text-base md:text-xl font-heading mb-4 md:mb-6 text-pencil/70">
+                                🎂 Make a wish and blow the candles!
+                            </p>
+                            
+                            <!-- Birthday Cake Illustration (FIXED DESIGN) -->
+                            <div id="birthdayCake" class="birthday-cake-visual cursor-pointer">
+                                <!-- Candles on Top -->
+                                <div class="candles-container-top">
+                                    <div class="candle-stick">
+                                        <div class="candle-flame-top" data-index="0"></div>
+                                        <div class="candle-body">2</div>
+                                    </div>
+                                    <div class="candle-stick">
+                                        <div class="candle-flame-top" data-index="1"></div>
+                                        <div class="candle-body">0</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Cake Layers (Bottom to Top) -->
+                                <div class="cake-layers">
+                                    <div class="cake-layer cake-top">
+                                        <div class="frosting-drip"></div>
+                                        <div class="frosting-drip"></div>
+                                        <div class="frosting-drip"></div>
+                                    </div>
+                                    <div class="cake-layer cake-middle"></div>
+                                    <div class="cake-layer cake-bottom"></div>
+                                </div>
+                                
+                                <!-- Plate -->
+                                <div class="cake-plate"></div>
+                                
+                                <!-- Decorations -->
+                                <div class="cake-sparkles">
+                                    <span class="sparkle">✨</span>
+                                    <span class="sparkle">✨</span>
+                                </div>
+                            </div>
+                            
+                            <p class="text-sm md:text-base text-pencil/60 mt-4 italic">
+                                👆 Click the cake to blow out the candles!
+                            </p>
+                            
+                            <!-- Hidden message (shows after blown) -->
+                            <div id="wishMessage" class="hidden mt-6 md:mt-8 animate-fadeIn">
+                                <p class="text-2xl md:text-4xl font-heading text-marker-red mb-4">
+                                    ✨ Your wish is granted! ✨
+                                </p>
+                                <p class="text-sm md:text-base text-pencil/60 italic">
+                                    (Well, at least the 13-year wait is over 😊)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scroll Indicator -->
+                    <div class="scroll-indicator-birthday">
+                        <p class="text-base md:text-lg mb-2 opacity-60">More birthday surprises below...</p>
+                        <iconify-icon icon="mdi:chevron-down" class="text-3xl md:text-4xl animate-bounce text-marker-red"></iconify-icon>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Memory Carousel Section -->
+        <section class="memory-carousel-section py-12 md:py-20 px-4 md:px-6 bg-erased/20">
+            <div class="max-w-5xl mx-auto">
+                
+                <div class="text-center mb-8 md:mb-12">
+                    <h2 class="font-heading text-3xl md:text-5xl mb-3 md:mb-4">A Journey Through Time</h2>
+                    <p class="text-lg md:text-xl text-pencil/70">13 years of memories (the ones I remember)</p>
+                </div>
+
+                <!-- Carousel Container -->
+                <div class="carousel-wrapper relative">
+                    <div class="carousel-track" id="carouselTrack">
+                        
+                        <!-- Slide 1 -->
+                        <div class="carousel-slide">
+                            <div class="polaroid-card wobbly-card bg-white border-4 border-pencil p-4 md:p-6">
+                                <div class="polaroid-image-container mb-4">
+                                    <div class="memory-illustration bg-postit flex items-center justify-center" style="height: 250px; border-radius: 8px;">
+                                        <div class="text-center">
+                                            <iconify-icon icon="mdi:human-female-dance" class="text-6xl md:text-8xl text-pencil/40"></iconify-icon>
+                                            <p class="text-base md:text-lg font-heading mt-2 text-pencil/60">White Dress</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="polaroid-caption">
+                                    <h3 class="font-heading text-xl md:text-2xl mb-2">The Girl in White</h3>
+                                    <p class="text-sm md:text-base text-pencil/70 mb-2">1st Standard Annual Day</p>
+                                    <p class="text-sm md:text-base italic">"That's when I first noticed you existed 😄"</p>
+                                </div>
+                                <div class="year-badge">2011</div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2 -->
+                        <div class="carousel-slide">
+                            <div class="polaroid-card wobbly-card bg-white border-4 border-pencil p-4 md:p-6">
+                                <div class="polaroid-image-container mb-4">
+                                    <div class="memory-illustration bg-pen-blue/10 flex items-center justify-center" style="height: 250px; border-radius: 8px;">
+                                        <div class="text-center">
+                                            <div class="flex gap-4 justify-center">
+                                                <iconify-icon icon="mdi:yoga" class="text-5xl md:text-7xl text-pen-blue/60"></iconify-icon>
+                                                <iconify-icon icon="mdi:yoga" class="text-5xl md:text-7xl text-marker-red/60"></iconify-icon>
+                                            </div>
+                                            <p class="text-base md:text-lg font-heading mt-2 text-pencil/60">Side by Side</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="polaroid-caption">
+                                    <h3 class="font-heading text-xl md:text-2xl mb-2">Yoga Day Partners</h3>
+                                    <p class="text-sm md:text-base text-pencil/70 mb-2">8th Standard Yoga Day</p>
+                                    <p class="text-sm md:text-base italic">"Probably the closest we ever got 😅"</p>
+                                </div>
+                                <div class="year-badge">2018</div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3 -->
+                        <div class="carousel-slide">
+                            <div class="polaroid-card wobbly-card bg-white border-4 border-pencil p-4 md:p-6">
+                                <div class="polaroid-image-container mb-4">
+                                    <div class="memory-illustration bg-marker-red/10 flex items-center justify-center" style="height: 250px; border-radius: 8px;">
+                                        <div class="text-center px-4">
+                                            <div class="grid grid-cols-4 gap-2 max-w-xs mx-auto mb-3">
+                                                <iconify-icon icon="mdi:cake-variant" class="cake-memory text-2xl text-pencil/30"></iconify-icon>
+                                                <iconify-icon icon="mdi:cake-variant" class="cake-memory text-2xl text-pencil/30"></iconify-icon>
+                                                <iconify-icon icon="mdi:cake-variant" class="cake-memory text-2xl text-pencil/30"></iconify-icon>
+                                                <iconify-icon icon="mdi:cake-variant" class="cake-memory text-2xl text-pencil/30"></iconify-icon>
+                                                <iconify-icon icon="mdi:cake-variant" class="cake-memory text-2xl text-pencil/30"></iconify-icon>
+                                                <iconify-icon icon="mdi:cake-variant" class="cake-memory text-2xl text-pencil/30"></iconify-icon>
+                                                <iconify-icon icon="mdi:cake-variant" class="cake-memory text-2xl text-pencil/30"></iconify-icon>
+                                                <iconify-icon icon="mdi:cake-variant" class="cake-memory text-2xl text-pencil/30"></iconify-icon>
+                                                <iconify-icon icon="mdi:cake-variant" class="cake-memory text-2xl text-pencil/30"></iconify-icon>
+                                                <iconify-icon icon="mdi:cake-variant" class="cake-memory text-2xl text-pencil/40"></iconify-icon>
+                                                <iconify-icon icon="mdi:cake-variant" class="cake-memory text-2xl text-pencil/40"></iconify-icon>
+                                                <iconify-icon icon="mdi:cake-variant" class="cake-memory text-2xl text-pencil/40"></iconify-icon>
+                                                <iconify-icon icon="mdi:cake-variant" class="cake-memory text-3xl text-marker-red"></iconify-icon>
+                                            </div>
+                                            <p class="text-sm font-heading text-pencil/60">Getting bigger...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="polaroid-caption">
+                                    <h3 class="font-heading text-xl md:text-2xl mb-2">The Birthday Counter</h3>
+                                    <p class="text-sm md:text-base text-pencil/70 mb-2">13 Years of Birthdays</p>
+                                    <p class="text-sm md:text-base italic">"I remembered every single one"</p>
+                                </div>
+                                <div class="year-badge">2011-2024</div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 4 -->
+                        <div class="carousel-slide">
+                            <div class="polaroid-card wobbly-card bg-white border-4 border-pencil p-4 md:p-6">
+                                <div class="polaroid-image-container mb-4">
+                                    <div class="memory-illustration bg-postit flex items-center justify-center" style="height: 250px; border-radius: 8px;">
+                                        <div class="text-center px-4">
+                                            <div class="flex flex-col gap-2">
+                                                <div class="speech-bubble-memory line-through opacity-40">Hi!</div>
+                                                <div class="speech-bubble-memory line-through opacity-40">Hello!</div>
+                                                <div class="speech-bubble-memory line-through opacity-40">Hey!</div>
+                                                <div class="speech-bubble-memory opacity-20">...</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="polaroid-caption">
+                                    <h3 class="font-heading text-xl md:text-2xl mb-2">The Introvert's Dilemma</h3>
+                                    <p class="text-sm md:text-base text-pencil/70 mb-2">Every Single Day</p>
+                                    <p class="text-sm md:text-base italic">"Practiced in my head 1000 times 🤦‍♂️"</p>
+                                </div>
+                                <div class="year-badge">2011-2024</div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 5 -->
+                        <div class="carousel-slide">
+                            <div class="polaroid-card wobbly-card bg-white border-4 border-pencil p-4 md:p-6">
+                                <div class="polaroid-image-container mb-4">
+                                    <div class="memory-illustration bg-pen-blue/10 flex items-center justify-center" style="height: 250px; border-radius: 8px;">
+                                        <div class="text-center">
+                                            <div class="flex items-center gap-4 justify-center">
+                                                <div>
+                                                    <iconify-icon icon="mdi:school" class="text-5xl md:text-6xl text-pencil/40"></iconify-icon>
+                                                    <p class="text-xs md:text-sm mt-1">School</p>
+                                                </div>
+                                                <iconify-icon icon="mdi:arrow-right" class="text-3xl md:text-4xl text-marker-red"></iconify-icon>
+                                                <div>
+                                                    <iconify-icon icon="mdi:bank" class="text-5xl md:text-6xl text-pencil/40"></iconify-icon>
+                                                    <p class="text-xs md:text-sm mt-1">College</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="polaroid-caption">
+                                    <h3 class="font-heading text-xl md:text-2xl mb-2">School → College</h3>
+                                    <p class="text-sm md:text-base text-pencil/70 mb-2">Different Buildings</p>
+                                    <p class="text-sm md:text-base italic">"Same heartbeat ❤️‍🩹"</p>
+                                </div>
+                                <div class="year-badge">2021</div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 6 -->
+                        <div class="carousel-slide">
+                            <div class="polaroid-card wobbly-card bg-white border-4 border-pencil p-4 md:p-6">
+                                <div class="polaroid-image-container mb-4">
+                                    <div class="memory-illustration bg-erased flex items-center justify-center" style="height: 250px; border-radius: 8px;">
+                                        <div class="text-center">
+                                            <iconify-icon icon="mdi:eye" class="text-6xl md:text-8xl text-pencil/30"></iconify-icon>
+                                            <p class="text-base md:text-lg font-heading mt-2 text-pencil/60">Silent Observer</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="polaroid-caption">
+                                    <h3 class="font-heading text-xl md:text-2xl mb-2">The Silent Observer</h3>
+                                    <p class="text-sm md:text-base text-pencil/70 mb-2">Every Day, Every Year</p>
+                                    <p class="text-sm md:text-base italic">"Memorized your smile before learning to say hello"</p>
+                                </div>
+                                <div class="year-badge">2011-2024</div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 7 - Transition Slide -->
+                        <div class="carousel-slide">
+                            <div class="polaroid-card wobbly-card bg-postit border-4 border-marker-red p-4 md:p-6 transition-slide">
+                                <div class="polaroid-image-container mb-4">
+                                    <div class="memory-illustration bg-white flex items-center justify-center" style="height: 250px; border-radius: 8px; border: 3px dashed var(--marker-red);">
+                                        <div class="text-center">
+                                            <iconify-icon icon="mdi:email-seal" class="text-6xl md:text-8xl text-marker-red/60"></iconify-icon>
+                                            <p class="text-base md:text-lg font-heading mt-2 text-marker-red">Sealed Letter</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="polaroid-caption">
+                                    <h3 class="font-heading text-xl md:text-2xl mb-2 text-marker-red">And Now...</h3>
+                                    <p class="text-sm md:text-base text-pencil/70 mb-2">After 13 Years</p>
+                                    <p class="text-sm md:text-base italic">"Today, I'm done being silent..."</p>
+                                </div>
+                                <div class="year-badge bg-marker-red text-white">2024</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Carousel Navigation -->
+                    <button class="carousel-nav carousel-prev" id="carouselPrev">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <button class="carousel-nav carousel-next" id="carouselNext">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+
+                    <!-- Carousel Dots -->
+                    <div class="carousel-dots" id="carouselDots"></div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Birthday Wishes Letter Section -->
+        <section class="birthday-letter-section py-12 md:py-20 px-4 md:px-6">
+            <div class="max-w-3xl mx-auto">
+                
+                <div class="text-center mb-8 md:mb-12">
+                    <h2 class="font-heading text-3xl md:text-5xl mb-3 md:mb-4">A Special Message</h2>
+                    <p class="text-lg md:text-xl text-pencil/70">Click to open your birthday card</p>
+                </div>
+
+                <!-- Sealed Envelope -->
+                <div id="sealedEnvelope" class="sealed-envelope-container cursor-pointer">
+                    <div class="envelope wobbly-card bg-white border-4 border-pencil p-6 md:p-10 text-center hover:scale-105 transition-transform">
+                        <iconify-icon icon="mdi:email-seal" class="text-6xl md:text-8xl text-marker-red mb-4"></iconify-icon>
+                        <p class="font-heading text-xl md:text-2xl mb-2">To: The 2/10 Girl</p>
+                        <p class="font-heading text-lg md:text-xl text-pencil/60 mb-4">From: Your Silent Admirer</p>
+                        <div class="wax-seal">
+                            <div class="seal-circle">20</div>
+                        </div>
+                        <p class="text-base md:text-lg text-marker-red font-heading mt-4 animate-pulse">
+                            👆 Click to Open
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Opened Letter (Hidden Initially) -->
+                <div id="openedLetter" class="opened-letter-container hidden">
+                    <div class="letter-paper wobbly-card bg-white border-4 border-pencil p-6 md:p-12">
+                        <div class="letter-header mb-6 md:mb-8 pb-4 md:pb-6 border-b-2 border-dashed border-erased">
+                            <p class="text-sm md:text-base text-pencil/60">
+                                <iconify-icon icon="mdi:calendar" class="text-marker-red"></iconify-icon>
+                                Your 20th Birthday | 2024
+                            </p>
+                        </div>
+
+                        <div class="letter-body text-base md:text-lg leading-relaxed space-y-4 md:space-y-6">
+                            <p>Hey Birthday Girl! 🎂</p>
+                            
+                            <p><span class="text-3xl md:text-4xl font-heading text-marker-red">20</span> years old! Can you believe it?</p>
+                            
+                            <p>I still remember you as that kid in 1st standard (yes, I'm THAT old in your life 😄).</p>
+                            
+                            <div class="highlight-box bg-postit p-4 md:p-6 border-l-4 border-marker-red rounded-lg">
+                                <p class="font-heading text-lg md:text-xl mb-3 md:mb-4">Here's to another year of:</p>
+                                <ul class="space-y-2 text-sm md:text-base">
+                                    <li>✓ Being effortlessly cool</li>
+                                    <li>✓ Ignoring people (including me, obviously)</li>
+                                    <li>✓ Making ordinary days memorable (even if you don't know it)</li>
+                                </ul>
+                            </div>
+                            
+                            <p>I hope this year brings you everything you've been dreaming about.</p>
+                            
+                            <p class="text-xl md:text-2xl font-heading text-center text-marker-red py-4 md:py-6">
+                                You deserve all the happiness in the world.
+                            </p>
+                            
+                            <p class="text-2xl md:text-3xl font-heading text-center">Happy Birthday! 🎈</p>
+                            
+                            <div class="border-t-2 border-dashed border-erased pt-6 md:pt-8 mt-6 md:mt-8">
+                                <p class="italic text-pencil/70 text-sm md:text-base">P.S. There's something I've wanted to tell you for a very long time... but that's for later 😊</p>
+                            </div>
+                        </div>
+
+                        <div class="letter-signature mt-6 md:mt-8 text-right">
+                            <p class="font-heading text-xl md:text-2xl text-pencil/60">
+                                — Someone who's been watching you grow up
+                            </p>
+                            <p class="text-xs md:text-sm text-pencil/40 italic mt-2">
+                                (in the least creepy way possible, I promise!)
+                            </p>
+                        </div>
+
+                        <!-- Transition Button -->
+                        <div class="transition-hook-container mt-8 md:mt-12 text-center">
+                            <div class="relative inline-block">
+                                <button id="transitionTrigger" class="transition-button wobbly-card bg-postit border-4 border-marker-red px-6 md:px-8 py-3 md:py-4 font-heading text-lg md:text-xl hover:bg-marker-red hover:text-white transition-all">
+                                    Wait... what did you want to tell me? 🤔
+                                </button>
+                                <!-- Hand-drawn arrow -->
+                                <svg class="hand-arrow-pointer hidden md:block" width="100" height="80" viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10,20 Q40,15 60,25 T90,35" 
+                                          stroke="#2d2d2d" 
+                                          stroke-width="2.5" 
+                                          fill="none"
+                                          stroke-dasharray="5,5"
+                                          stroke-linecap="round"/>
+                                    <path d="M85,30 L95,35 L88,42" 
+                                          stroke="#2d2d2d" 
+                                          stroke-width="2.5" 
+                                          fill="none"
+                                          stroke-linecap="round"
+                                          stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================================
+             PHASE 2: INTERACTIVE TRANSITION 
+             ============================================ -->
+        
+        <section id="transitionSection" class="transition-dialog-section hidden min-h-screen flex items-center justify-center px-4 py-12 md:py-20 relative">
+            <div class="max-w-3xl mx-auto w-full">
+                
+                <!-- Progress Indicator -->
+                <div class="progress-indicator mb-8 md:mb-12 text-center">
+                    <div class="flex justify-center gap-2 mb-3 md:mb-4">
+                        <div class="progress-dot" data-step="1"></div>
+                        <div class="progress-dot" data-step="2"></div>
+                        <div class="progress-dot" data-step="3"></div>
+                        <div class="progress-dot" data-step="4"></div>
+                        <div class="progress-dot" data-step="5"></div>
+                    </div>
+                    <p class="text-xs md:text-sm text-pencil/50 italic">You can stop anytime...</p>
+                </div>
+
+                <!-- Dialog Container -->
+                <div id="dialogContainer" class="dialog-container">
+                    <!-- Questions will be dynamically inserted here -->
+                </div>
+
+                <!-- Emergency Exit -->
+                <button id="emergencyExit" class="emergency-exit-btn fixed top-20 md:top-6 right-4 md:right-6 wobbly-card bg-white border-2 border-pencil p-2 md:p-3 rounded-full hover:bg-marker-red hover:text-white transition-all z-40">
+                    <iconify-icon icon="mdi:close" class="text-xl md:text-2xl text-pencil"></iconify-icon>
+                </button>
+
+            </div>
+        </section>
+
+        <!-- ============================================
+             PHASE 3: THE JOURNEY (Enhanced Existing)
+             ============================================ -->
+
+        <!-- Timeline Visualization (NEW) -->
+        <section id="journeySection" class="timeline-viz-section hidden py-12 md:py-20 px-4 md:px-6 bg-erased/30">
+            <div class="max-w-5xl mx-auto">
+                
+                <div class="text-center mb-8 md:mb-16">
+                    <h2 class="font-heading text-3xl md:text-5xl lg:text-6xl mb-3 md:mb-6 text-marker-red">
+                        The Journey: 13 Years in Moments
+                    </h2>
+                    <p class="text-lg md:text-2xl text-pencil/70">From age 7 to 20... I've been here</p>
+                </div>
+
+                <!-- Timeline -->
+                <div class="timeline-container relative py-8 md:py-12">
+                    <div class="timeline-line"></div>
+                    
+                    <div class="timeline-points">
+                        <div class="timeline-point" data-year="2011" data-age="7">
+                            <div class="point-circle"></div>
+                            <div class="point-label">
+                                <p class="font-heading text-base md:text-lg">2011</p>
+                                <p class="text-xs md:text-sm text-pencil/60">Age 7 - 1st Std</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-point" data-year="2018" data-age="14">
+                            <div class="point-circle"></div>
+                            <div class="point-label">
+                                <p class="font-heading text-base md:text-lg">2018</p>
+                                <p class="text-xs md:text-sm text-pencil/60">Age 14 - 8th Std</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-point" data-year="2021" data-age="17">
+                            <div class="point-circle"></div>
+                            <div class="point-label">
+                                <p class="font-heading text-base md:text-lg">2021</p>
+                                <p class="text-xs md:text-sm text-pencil/60">Age 17 - 10th → College</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-point active" data-year="2024" data-age="20">
+                            <div class="point-circle"></div>
+                            <div class="point-label">
+                                <p class="font-heading text-base md:text-lg text-marker-red">2024</p>
+                                <p class="text-xs md:text-sm text-marker-red">Age 20 - Today</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-8 md:mt-12">
+                    <p class="text-lg md:text-2xl font-heading text-pencil/80 italic">
+                        "From the white dress to today..."
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION: The Journey (Memory Cards) - EXISTING ENHANCED -->
+        <section class="journey-section hidden py-12 md:py-20 px-4 md:px-6">
+            <div class="max-w-4xl mx-auto">
+                
+                <!-- Section Title -->
+                <div class="text-center mb-12 md:mb-16 fade-in-up">
+                    <h2 class="font-heading text-3xl md:text-5xl mb-3 md:mb-4">The Journey We Walked</h2>
+                    <p class="text-lg md:text-xl text-pencil/70">...without ever walking together</p>
+                </div>
+
+                <!-- Memory Cards Grid -->
+                <div class="space-y-12 md:space-y-16">
+                    
+                    <!-- Card 1: School Days -->
+                    <div class="memory-card memory-card-1">
+                        <div class="wobbly-card bg-postit border-[3px] border-pencil p-4 md:p-8 card-with-tack">
+                            <div class="tack"></div>
+                            <div class="year-badge-card">2011-2021</div>
+                            
+                            <div class="flex items-start gap-3 md:gap-4 mb-3 md:mb-4">
+                                <iconify-icon icon="mdi:school" class="text-3xl md:text-4xl text-pencil flex-shrink-0"></iconify-icon>
+                                <div>
+                                    <h3 class="font-heading text-xl md:text-3xl mb-2">The School Days</h3>
+                                    <p class="text-xs md:text-sm text-pencil/60">1st Standard → 10th Standard</p>
+                                </div>
+                            </div>
+                            
+                            <blockquote class="text-base md:text-xl leading-relaxed mb-3 md:mb-4 italic border-l-4 border-pencil pl-3 md:pl-4">
+                                "You grew up in front of my eyes.<br>
+                                So did my feelings."
+                            </blockquote>
+                            
+                            <p class="text-sm md:text-lg text-pencil/80">
+                                White dress. Annual day. 1st standard.<br>
+                                Yoga day. 8th standard. Side by side.<br>
+                                <span class="text-marker-red font-heading">You probably forgot. I never did.</span>
+                            </p>
+                            
+                            <div class="mt-3 md:mt-4 flex gap-3 md:gap-4 items-center text-pencil/40">
+                                <iconify-icon icon="mdi:human-female-dance" class="text-2xl md:text-3xl"></iconify-icon>
+                                <span class="text-xs md:text-sm">↑ That white dress lives in my memory</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: The Silent Years -->
+                    <div class="memory-card memory-card-2">
+                        <div class="wobbly-card bg-white border-[3px] border-pencil p-4 md:p-8 card-with-tape">
+                            <div class="tape"></div>
+                            <div class="year-badge-card">2011-2024</div>
+                            
+                            <div class="flex items-start gap-3 md:gap-4 mb-3 md:mb-4">
+                                <iconify-icon icon="mdi:head-question" class="text-3xl md:text-4xl text-pen-blue flex-shrink-0"></iconify-icon>
+                                <div>
+                                    <h3 class="font-heading text-xl md:text-3xl mb-2">The Introvert's Dilemma</h3>
+                                    <p class="text-xs md:text-sm text-pencil/60">Every single day</p>
+                                </div>
+                            </div>
+                            
+                            <blockquote class="text-base md:text-xl leading-relaxed mb-3 md:mb-4 italic border-l-4 border-pen-blue pl-3 md:pl-4">
+                                "I memorized your smile before I learned how to say hello."
+                            </blockquote>
+                            
+                            <p class="text-sm md:text-lg text-pencil/80 mb-3 md:mb-4">
+                                A thousand conversations... all inside my head.<br>
+                                Every day I chose silence, hoping tomorrow would make me brave.
+                            </p>
+                            
+                            <div class="flex gap-2 flex-wrap mt-3 md:mt-4">
+                                <div class="speech-bubble empty">...</div>
+                                <div class="speech-bubble empty">...</div>
+                                <div class="speech-bubble empty">...</div>
+                                <div class="speech-bubble filled">
+                                    <iconify-icon icon="mdi:heart" class="text-marker-red"></iconify-icon>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: College Transition -->
+                    <div class="memory-card memory-card-3">
+                        <div class="wobbly-card bg-white border-[3px] border-pencil p-4 md:p-8">
+                            <div class="year-badge-card">2021</div>
+                            
+                            <div class="flex items-start gap-3 md:gap-4 mb-3 md:mb-4">
+                                <iconify-icon icon="mdi:school" class="text-3xl md:text-4xl text-pencil flex-shrink-0"></iconify-icon>
+                                <div>
+                                    <h3 class="font-heading text-xl md:text-3xl mb-2">School → College</h3>
+                                    <p class="text-xs md:text-sm text-pencil/60">Different buildings. Same heart.</p>
+                                </div>
+                            </div>
+                            
+                            <blockquote class="text-base md:text-xl leading-relaxed mb-3 md:mb-4 italic border-l-4 border-marker-red pl-3 md:pl-4">
+                                "Different classrooms. Same heartbeat."
+                            </blockquote>
+                            
+                            <p class="text-sm md:text-lg text-pencil/80">
+                                School ended. College began.<br>
+                                My heart never restarted—it never stopped.
+                            </p>
+                            
+                            <div class="flex items-center gap-3 md:gap-4 mt-4 md:mt-6 justify-center">
+                                <div class="building-icon">
+                                    <iconify-icon icon="mdi:school" class="text-4xl md:text-5xl text-pencil/40"></iconify-icon>
+                                    <p class="text-xs text-center">School</p>
+                                </div>
+                                <svg width="40" height="20" class="flex-shrink-0">
+                                    <path d="M5,10 L35,10" stroke="#ff4d4d" stroke-width="2" marker-end="url(#arrowhead)"/>
+                                    <defs>
+                                        <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                            <polygon points="0 0, 6 3, 0 6" fill="#ff4d4d"/>
+                                        </marker>
+                                    </defs>
+                                </svg>
+                                <div class="building-icon">
+                                    <iconify-icon icon="mdi:bank" class="text-4xl md:text-5xl text-pencil/40"></iconify-icon>
+                                    <p class="text-xs text-center">College</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: The Birthdays -->
+                    <div class="memory-card memory-card-4">
+                        <div class="wobbly-card bg-erased border-[3px] border-pencil p-4 md:p-8 card-with-tack">
+                            <div class="tack red-tack"></div>
+                            <div class="year-badge-card">2011-2024</div>
+                            
+                            <div class="flex items-start gap-3 md:gap-4 mb-3 md:mb-4">
+                                <iconify-icon icon="mdi:cake-variant" class="text-3xl md:text-4xl text-marker-red flex-shrink-0"></iconify-icon>
+                                <div>
+                                    <h3 class="font-heading text-xl md:text-3xl mb-2">Every Birthday Reminded Me</h3>
+                                    <p class="text-xs md:text-sm text-pencil/60">20 candles. 13 years of silence.</p>
+                                </div>
+                            </div>
+                            
+                            <blockquote class="text-base md:text-xl leading-relaxed mb-3 md:mb-4 italic border-l-4 border-marker-red pl-3 md:pl-4">
+                                "Every birthday reminded me of one more year I stayed silent."
+                            </blockquote>
+                            
+                            <div class="birthday-cakes">
+                                <div class="flex gap-1 items-end justify-center flex-wrap">
+                                    <iconify-icon icon="mdi:cake-variant" class="cake-icon" style="font-size: 16px;"></iconify-icon>
+                                    <iconify-icon icon="mdi:cake-variant" class="cake-icon" style="font-size: 18px;"></iconify-icon>
+                                    <iconify-icon icon="mdi:cake-variant" class="cake-icon" style="font-size: 20px;"></iconify-icon>
+                                    <iconify-icon icon="mdi:cake-variant" class="cake-icon" style="font-size: 22px;"></iconify-icon>
+                                    <iconify-icon icon="mdi:cake-variant" class="cake-icon" style="font-size: 24px;"></iconify-icon>
+                                    <iconify-icon icon="mdi:cake-variant" class="cake-icon" style="font-size: 26px;"></iconify-icon>
+                                    <iconify-icon icon="mdi:cake-variant" class="cake-icon" style="font-size: 28px;"></iconify-icon>
+                                    <iconify-icon icon="mdi:cake-variant" class="cake-icon" style="font-size: 30px;"></iconify-icon>
+                                    <iconify-icon icon="mdi:cake-variant" class="cake-icon" style="font-size: 32px;"></iconify-icon>
+                                    <iconify-icon icon="mdi:cake-variant" class="cake-icon" style="font-size: 34px;"></iconify-icon>
+                                    <iconify-icon icon="mdi:cake-variant" class="cake-icon" style="font-size: 36px;"></iconify-icon>
+                                    <iconify-icon icon="mdi:cake-variant" class="cake-icon" style="font-size: 38px;"></iconify-icon>
+                                    <iconify-icon icon="mdi:cake-variant" class="cake-icon text-marker-red" style="font-size: 42px;"></iconify-icon>
+                                </div>
+                                <p class="text-center text-xs md:text-sm text-pencil/60 mt-3 md:mt-4">
+                                    Getting bigger. Getting heavier.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: The Stats (Timeline Numbers) - EXISTING -->
+        <section class="stats-section hidden py-12 md:py-20 px-4 md:px-6 bg-erased/30">
+            <div class="max-w-5xl mx-auto">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                    
+                    <div class="stat-card stat-card-1">
+                        <div class="wobbly-stat">
+                            <p class="stat-number font-heading text-3xl md:text-5xl text-marker-red">4,745</p>
+                            <p class="stat-label text-xs md:text-base">days<br>since we met</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card stat-card-2">
+                        <div class="wobbly-stat">
+                            <p class="stat-number font-heading text-3xl md:text-5xl text-pen-blue">156</p>
+                            <p class="stat-label text-xs md:text-base">months<br>of silence</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card stat-card-3">
+                        <div class="wobbly-stat">
+                            <p class="stat-number font-heading text-3xl md:text-5xl text-pencil">13</p>
+                            <p class="stat-label text-xs md:text-base">years<br>of feelings</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card stat-card-4">
+                        <div class="wobbly-stat">
+                            <p class="stat-number font-heading text-3xl md:text-5xl text-marker-red">1</p>
+                            <p class="stat-label text-xs md:text-base">heart<br>still yours</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: The Final Year (Emotional Pivot) - EXISTING -->
+        <section class="final-year-section hidden py-12 md:py-20 px-4 md:px-6 relative">
+            <div class="max-w-3xl mx-auto">
+                
+                <div class="dashed-circle hidden md:block"></div>
+                
+                <div class="text-center mb-8 md:mb-12 fade-in-up">
+                    <iconify-icon icon="mdi:clock-alert" class="text-5xl md:text-6xl text-marker-red mb-4"></iconify-icon>
+                    <h2 class="font-heading text-3xl md:text-6xl mb-4 md:mb-6 text-marker-red">
+                        The Final Year
+                    </h2>
+                    <p class="text-lg md:text-2xl text-pencil/80 leading-relaxed">
+                        College is ending.<br>
+                        Time is running out.<br>
+                        <span class="font-heading text-2xl md:text-3xl text-marker-red">Silence is no longer an option.</span>
+                    </p>
+                </div>
+
+                <div class="wobbly-card bg-white border-[3px] border-marker-red p-6 md:p-10 urgency-card">
+                    <blockquote class="text-xl md:text-3xl font-heading leading-relaxed text-center mb-4 md:mb-6 text-marker-red">
+                        "If courage has a deadline...<br>
+                        today is mine."
+                    </blockquote>
+                    
+                    <div class="space-y-3 md:space-y-4 text-base md:text-xl text-pencil/80">
+                        <p>
+                            <iconify-icon icon="mdi:circle-medium" class="text-marker-red"></iconify-icon>
+                            Some trains come only once. So does courage.
+                        </p>
+                        <p>
+                            <iconify-icon icon="mdi:circle-medium" class="text-marker-red"></iconify-icon>
+                            I'd rather be rejected than spend another lifetime wondering.
+                        </p>
+                        <p>
+                            <iconify-icon icon="mdi:circle-medium" class="text-marker-red"></iconify-icon>
+                            The fear stayed for 13 years. Today, it doesn't get another chance.
+                        </p>
+                    </div>
+                    
+                    <div class="mt-6 md:mt-8 text-center">
+                        <div class="inline-block relative calendar-mark">
+                            <iconify-icon icon="mdi:calendar-heart" class="text-5xl md:text-7xl text-marker-red"></iconify-icon>
+                            <p class="text-xs md:text-sm mt-2 font-heading">Today. Now. Finally.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION: The Unsent Drafts - EXISTING -->
+        <section class="drafts-section hidden py-12 md:py-20 px-4 md:px-6">
+            <div class="max-w-4xl mx-auto">
+                
+                <div class="text-center mb-8 md:mb-12 fade-in-up">
+                    <h2 class="font-heading text-2xl md:text-4xl mb-3 md:mb-4">13 Years of Almost-Texts</h2>
+                    <p class="text-base md:text-lg text-pencil/70">Every draft I never sent...</p>
+                </div>
+
+                <div class="drafts-container relative h-[400px] md:h-[300px]">
+                    
+                    <div class="draft-card draft-1 wobbly-card bg-white border-2 border-pencil p-3 md:p-4">
+                        <p class="text-base md:text-lg line-through text-pencil/50">Dear [2/10 Girl], I...</p>
+                        <iconify-icon icon="mdi:close-circle" class="text-marker-red text-2xl md:text-3xl absolute top-2 right-2"></iconify-icon>
+                    </div>
+                    
+                    <div class="draft-card draft-2 wobbly-card bg-white border-2 border-pencil p-3 md:p-4">
+                        <p class="text-base md:text-lg line-through text-pencil/50">I don't know how to...</p>
+                        <iconify-icon icon="mdi:close-circle" class="text-marker-red text-2xl md:text-3xl absolute top-2 right-2"></iconify-icon>
+                    </div>
+                    
+                    <div class="draft-card draft-3 wobbly-card bg-white border-2 border-pencil p-3 md:p-4">
+                        <p class="text-base md:text-lg line-through text-pencil/50">This might sound...</p>
+                        <iconify-icon icon="mdi:close-circle" class="text-marker-red text-2xl md:text-3xl absolute top-2 right-2"></iconify-icon>
+                    </div>
+                    
+                    <div class="draft-card draft-4 wobbly-card bg-postit border-[3px] border-marker-red p-4 md:p-6">
+                        <p class="text-lg md:text-2xl font-heading text-marker-red">
+                            Today, I'm just going<br>to be honest.
+                        </p>
+                        <iconify-icon icon="mdi:check-circle" class="text-marker-red text-3xl md:text-4xl absolute top-2 right-2"></iconify-icon>
+                    </div>
+                    
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION: The Letter (THE CONFESSION) - EXISTING -->
+        <section class="letter-section hidden py-12 md:py-20 px-4 md:px-6 relative">
+            <div class="max-w-3xl mx-auto">
+                
+                <div class="text-center mb-12 md:mb-16 fade-in-up">
+                    <iconify-icon icon="mdi:email-heart" class="text-5xl md:text-6xl text-marker-red mb-4 heartbeat"></iconify-icon>
+                    <h2 class="font-heading text-2xl md:text-5xl mb-3 md:mb-4">After 13 Years...</h2>
+                    <p class="text-lg md:text-xl text-pencil/70">The letter I should have written long ago</p>
+                </div>
+
+                <div class="letter-container wobbly-card bg-white border-[3px] border-pencil p-6 md:p-12 relative">
+                    
+                    <div class="coffee-stain hidden md:block"></div>
+                    <div class="fingerprint hidden md:block"></div>
+                    
+                    <div class="date-stamp">
+                        <p class="text-xs md:text-sm text-pencil/60 font-heading">
+                            <iconify-icon icon="mdi:calendar" class="text-marker-red"></iconify-icon>
+                            Final Year of College | Your Birthday
+                        </p>
+                    </div>
+
+                    <div class="letter-content text-base md:text-xl leading-relaxed space-y-4 md:space-y-6">
+                        <p>Hey... un kitta romba naala oru vishayam sollanum nu nenachitu irundhen. Aana epdi solradhu nu theriyama sollave illa.</p>
+                        
+                        <p>Namma 1st standard-la irundhu orutharukku oruthar theriyum... aana namma perusa pesunadhu illa. Irundhalum, unna pathina sila ninaivugal enakku innum nyabagam irukku.</p>
+                        
+                        <p class="highlight-text">
+                            <iconify-icon icon="mdi:star-four-points" class="text-marker-red"></iconify-icon>
+                            Nee chinna vayasula annual day-la white dress pottu participate pannadhu enakku innum nyabagam irukku. 8th standard-la namma rendu perum annual day yoga-la participate pannom... adhuvum enakku innum nyabagam irukku.
+                        </p>
+                        
+                        <p class="text-xl md:text-3xl font-heading text-marker-red text-center my-6 md:my-8">
+                            Unmaiya sollanum na...<br>
+                            enakku unna romba pidikkum.
+                        </p>
+                        
+                        <p>Idha romba naala sollanum nu nenachen, aana ippo dhaan thairiyam vandhuchu.</p>
+                        
+                        <p>Idhu unakku unexpected-ah irukkalam. Unna pressure panna naan idha sollala. En feelings-ah honest-ah un kitta sollanum nu mattum dhaan nenachen.</p>
+                        
+                        <p class="text-lg md:text-2xl font-heading text-center border-t-2 border-b-2 border-dashed border-pencil py-3 md:py-4 my-4 md:my-6">
+                            Unakku okay-na... naan unna innum konjam better-ah therinjikka aasapadren.
+                        </p>
+                        
+                        <p class="text-center text-pencil/70 italic text-sm md:text-base">
+                            Nee udane answer sollanum nu avasiyam illa.<br>
+                            Time eduthuko.
+                        </p>
+                    </div>
+
+                    <div class="mt-8 md:mt-12 text-right">
+                        <p class="font-heading text-xl md:text-2xl text-pencil/60">
+                            — The one who waited 13 years
+                        </p>
+                        <div class="mt-4 inline-block">
+                            <div class="hand-drawn-heart">
+                                <iconify-icon icon="mdi:heart" class="text-4xl md:text-5xl text-marker-red/30"></iconify-icon>
+                                <div class="eraser-mark"></div>
+                            </div>
+                            <p class="text-xs text-pencil/40 text-center mt-1">
+                                (drawn and erased 100 times)
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION: The Question & Reply - EXISTING ENHANCED -->
+        <section class="question-section hidden py-12 md:py-20 px-4 md:px-6">
+            <div class="max-w-2xl mx-auto text-center">
+                
+                <div class="wobbly-card bg-white border-[3px] border-pencil p-6 md:p-12 question-card">
+                    
+                    <p class="text-lg md:text-2xl text-pencil/70 mb-4 md:mb-6 leading-relaxed">
+                        No pressure. No expectations.<br>
+                        Just one question after 13 years:
+                    </p>
+                    
+                    <h3 class="font-heading text-2xl md:text-5xl text-marker-red mb-6 md:mb-8">
+                        Can I finally get to know you?
+                    </h3>
+                    
+                    <div class="relative h-16 md:h-24">
+                        <svg class="open-arrow mx-auto" width="100" height="80" viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50,10 Q45,40 50,70" 
+                                stroke="#ff4d4d" 
+                                stroke-width="3" 
+                                fill="none"
+                                stroke-dasharray="5,5"
+                                stroke-linecap="round"/>
+                            <path d="M45,65 L50,75 L55,65" 
+                                stroke="#ff4d4d" 
+                                stroke-width="3" 
+                                fill="none"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    
+                    <p class="text-base md:text-lg text-pencil/50 italic mt-4 mb-6 md:mb-8">
+                        (Your answer goes here...)
+                    </p>
+
+                </div>
+
+                <div class="reply-section mt-8 md:mt-12" id="replySection">
+                    
+                    <div class="wobbly-card bg-postit border-[3px] border-pencil p-4 md:p-6 mb-4 md:mb-6 instruction-card">
+                        <div class="flex items-center gap-3 justify-center mb-3">
+                            <iconify-icon icon="mdi:pencil" class="text-2xl md:text-3xl text-pencil"></iconify-icon>
+                            <h4 class="font-heading text-xl md:text-2xl">Write Your Reply</h4>
+                        </div>
+                        <p class="text-sm md:text-base text-pencil/70">
+                            Whatever you're thinking... I'd love to hear it. 💛
+                        </p>
+                    </div>
+
+                    <form id="replyForm" class="reply-form">
+                        
+                        <div class="message-input-container wobbly-card bg-white border-[3px] border-pencil p-3 md:p-4 mb-4 md:mb-6">
+                            <textarea 
+                                id="messageInput"
+                                name="message"
+                                rows="6"
+                                placeholder="Type your message here... (or just say hi 😊)"
+                                class="w-full bg-transparent font-body text-base md:text-xl text-pencil placeholder-pencil/40 resize-none focus:outline-none"
+                                required
+                            ></textarea>
+                            
+                            <div class="text-right text-xs md:text-sm text-pencil/40 mt-2">
+                                <span id="charCount">0</span> characters
+                            </div>
+                        </div>
+
+                        <button 
+                            type="submit" 
+                            class="send-button wobbly-card bg-white border-[3px] border-pencil px-6 md:px-8 py-3 md:py-4 font-body text-lg md:text-2xl text-pencil w-full md:w-auto mx-auto block transition-all duration-200 hover:bg-marker-red hover:text-white cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                            id="sendButton"
+                        >
+                            <span class="button-text flex items-center justify-center gap-3">
+                                <iconify-icon icon="mdi:send" class="text-xl md:text-2xl"></iconify-icon>
+                                <span>Send to Him 💌</span>
+                            </span>
+                        </button>
+
+                        <div id="statusMessage" class="mt-4 md:mt-6 hidden">
+                            <div class="status-success wobbly-card bg-postit border-[3px] border-pen-blue p-4 md:p-6 hidden">
+                                <div class="flex items-center gap-3 justify-center">
+                                    <iconify-icon icon="mdi:check-circle" class="text-3xl md:text-4xl text-pen-blue"></iconify-icon>
+                                    <div class="text-left">
+                                        <p class="font-heading text-xl md:text-2xl text-pen-blue mb-1">Message Sent! ✨</p>
+                                        <p class="text-sm md:text-base text-pencil/70">He's going to see this very soon...</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="status-error wobbly-card bg-white border-[3px] border-marker-red p-4 md:p-6 hidden">
+                                <div class="flex items-center gap-3 justify-center">
+                                    <iconify-icon icon="mdi:alert-circle" class="text-3xl md:text-4xl text-marker-red"></iconify-icon>
+                                    <div class="text-left">
+                                        <p class="font-heading text-xl md:text-2xl text-marker-red mb-1">Oops!</p>
+                                        <p class="text-sm md:text-base text-pencil/70">Something went wrong. Try again?</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <div class="mt-8 md:mt-12 wobbly-card bg-postit border-2 border-pencil p-4 md:p-6 inline-block small-note">
+                    <p class="text-xs md:text-base text-pencil/70">
+                        <iconify-icon icon="mdi:information" class="text-marker-red"></iconify-icon>
+                        P.S. If you're reading this... the website worked.<br>
+                        That's already more courage than I've shown in 13 years.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="py-8 md:py-12 px-4 md:px-6 border-t-2 border-dashed border-pencil mt-12 md:mt-20">
+            <div class="max-w-3xl mx-auto text-center">
+                <p class="text-base md:text-lg text-pencil/60 mb-4">
+                    Made with 
+                    <iconify-icon icon="mdi:heart" class="text-marker-red heartbeat"></iconify-icon>
+                    and 13 years of unspoken words
+                </p>
+                <p class="text-xs md:text-sm text-pencil/40">
+                    Happy 20th Birthday, [Girl_Name Girl] 🎂
+                </p>
+                <div class="mt-4 md:mt-6">
+                    <iconify-icon icon="mdi:cake-variant" class="text-3xl md:text-4xl text-marker-red animate-bounce"></iconify-icon>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="js/main.js"></script>
+    
+</body>
+</html>
